@@ -26,6 +26,9 @@ public class InterceptorsConfing implements WebMvcConfigurer  {
 		
 		// a todas, menos a
 		registry.addInterceptor(timeInterceptor).excludePathPatterns("/api/some/bar");
+	
+		
 	}
-
+	
+		
 }
