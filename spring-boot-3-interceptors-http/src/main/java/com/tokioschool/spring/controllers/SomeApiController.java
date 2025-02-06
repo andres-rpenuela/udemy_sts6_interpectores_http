@@ -19,4 +19,8 @@ public class SomeApiController {
 		return "Resulto of reqets /bar";
 	}
 	
+	@GetMapping("/error")
+	public String errorHandler() {
+		return "Resulto of reqets /error";
+	}
 }

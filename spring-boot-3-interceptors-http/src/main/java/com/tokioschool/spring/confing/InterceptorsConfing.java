@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.tokioschool.spring.intercerptors.CaseErrorInterceptor;
 import com.tokioschool.spring.intercerptors.LoggerInterceptor;
 import com.tokioschool.spring.intercerptors.TimeInterceptor;
 
@@ -15,6 +16,7 @@ public class InterceptorsConfing implements WebMvcConfigurer  {
 	
 	private final LoggerInterceptor loggerInterceptor;
 	private final TimeInterceptor timeInterceptor;
+	private final CaseErrorInterceptor caseErrorInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -23,11 +25,11 @@ public class InterceptorsConfing implements WebMvcConfigurer  {
 		//registry.addInterceptor(loggerInterceptor).addPathPatterns("/api/some/**");// lo que aplica a todo lo que cuelque de /api/some
 		//registry.addInterceptor(loggerInterceptor).addPathPatterns("/api/some/bar");// aplica solo a este handler
 		registry.addInterceptor(loggerInterceptor).addPathPatterns("/api/some/bar","/api/some/foo");// aplica solo a estos dos hanler solo
-		
+
 		// a todas, menos a
-		registry.addInterceptor(timeInterceptor).excludePathPatterns("/api/some/bar");
+		registry.addInterceptor(timeInterceptor).excludePathPatterns("/api/some/bar","/api/some/error");
 	
-		
+		registry.addInterceptor(caseErrorInterceptor).addPathPatterns("/api/some/error");
 	}
 	
 		
